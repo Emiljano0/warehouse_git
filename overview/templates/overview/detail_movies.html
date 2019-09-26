@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:margin-bottom="http://www.w3.org/1999/xhtml">
+<head>
+	<title>MOVIEWAREHOUSE</title>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<!-- Optional JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+	<!-- Font Library -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courgette">
+
+
+	<style>
+		body {
+			background-color:#DCD9CD ;
+		}
+
+		a.majlogo {
+			font-family: 'Courgette';
+        	font-size: 24px;
+		}
+
+		img.imazh {
+			padding-bottom:10px;
+			width:250px;
+			background-color:black;
+			height:350px;
+			margin-top:60px;
+		}
+
+		div.inlinemod {
+		    text-align:center;
+			padding-top: 60px;
+			display:inline-block;
+			background-color:black;
+			margin-bottom:50px;
+			width:100%;
+			color:grey;
+		}
+
+
+	@media only screen and (min-width: 576px) {
+
+		img.imazh {
+			width:100px;
+			height:150px;
+		}
+
+		div.inlinemod{
+			width:100%;
+		}
+
+		}
+
+
+	@media only screen and (min-width: 768px) {
+
+		img.imazh {
+			width:150px;
+			height:250px;
+		}
+
+		div.inlinemod{
+			width:100%;
+		}
+
+		}
+
+
+	@media only screen and (min-width: 1024px) {
+
+		img.imazh {
+			width:200px;
+			height:300px;
+		}
+
+		div.inlinemod{
+			width:100%;
+		}
+
+	@media only screen and (min-width: 1500px) {
+
+		img.imazh {
+			width:300px;
+			height:400px;
+		}
+
+		div.inlinemod{
+			width:100%;
+		}
+
+
+	@media only screen and (min-width: 1800px) {
+
+		img.imazh {
+			width:400px;
+			height:550px;
+		}
+
+		div.inlinemod{
+			width:100%;
+		}
+
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+
+		<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#mainNavBar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="mainNavBar">
+
+		<!-- Logo -->
+			<div class="navbar-header">
+				<a href="/moviewarehouse/" class="navbar-brand majlogo">MovieWarehouse</a>
+			</div>
+
+		<!-- Menu Items -->
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/moviewarehouse/movies/">MOVIES</a></li>
+				<li class="nav-item"><a class="nav-link" href="/moviewarehouse/series/">SERIES</a></li>
+				<li class="nav-item"><a class="nav-link" href="/moviewarehouse/documentaries/">DOCUMENTARIES</a></li>
+
+				<!-- drop down menu -->
+				<li class="nav-item dropdown ">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_list_item" href="#">
+						CATEGORIES <span class="caret"></span>
+					</a>
+					<div class="dropdown-menu" aria_labelledby="dropdown_list_item" >
+						<a class="dropdown-item" href="/moviewarehouse/war/">War</a>
+						<a class="dropdown-item" href="/moviewarehouse/detective/">Detective</a>
+						<a class="dropdown-item" href="/moviewarehouse/other_worlds/">Other Worlds</a>
+						<a class="dropdown-item" href="/moviewarehouse/romantic/">Romantic</a>
+					</div>
+				</li>
+			</ul>
+
+			<form class="form-inline" action="/moviewarehouse/search/" method="GET" value="{{request.GET.q}}">
+				<input class="form-control mr-sm-2 srch" type="text" placeholder="Search.." aria-label="Search" name="q"
+				value="{{request.GET.q}}">
+				<input class="btn btn-success my-sm-0" type="submit" name="submit" value="Search"/>
+			</form>
+		</div>
+	</nav>
+
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-6 inlinemod">
+				<img src="{{ movie.movie_poster.url }}" class="img-responsive imazh">
+				<div id="mv-info">
+					<div class="mvi-content" style="text-align:left;">
+						<div class="mvic-desc">
+							<p>
+								<h3>{{ movie.movie_title }}</h3>
+							</p>
+						</div>
+						<div class="mvic-info">
+							<p> <strong>DIRECTOR : </strong>{{ movie.movie_director }}</br>
+								<strong>RATING : </strong>{{ movie.movie_rating }}</br>
+								<strong>RELEASE DATE : </strong>{{ movie.movie_release_date }}</br>
+								<strong>BUDGET : </strong>{{ movie.movie_budget }} $</br>
+								<strong>GROSS : </strong>{{ movie.movie_gross  }} $</br>
+								<strong>QUALITY : </strong>{{ movie.movie_quality }}</br>
+								<strong>DESCRIPTION : </strong>{{ movie.movie_description}}</br>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-6" style="padding-top:80px;">
+				<div class="embed-responsive embed-responsive-16by9 inlinemod">
+					<video class="embed-responsive-item" height="auto"  width="100%"
+						   poster="{{ movie.movie_thumbnail.url }}" controls>
+						<source src="{{ movie.movie_video.url }}" type="video/mp4">
+						<track src="{{ movie.movie_subtitles.url }}" kind="subtitles" srclang="en" label="English"/>
+					</video>
+				</div>
+				</br></br></br>
+			</div>
+
+			<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2" style="padding-top:100px;">
+				Insert ads here .
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
