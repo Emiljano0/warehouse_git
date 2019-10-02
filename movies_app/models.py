@@ -3,7 +3,6 @@ from datetime import datetime
 
 
 class Movies(models.Model):
-    movie_id_field = models.IntegerField(primary_key=True, default=0)
     movie_director = models.CharField(max_length=1000)
     movie_synopsis = models.CharField(max_length=1000)
     movie_title = models.CharField(max_length=100)
