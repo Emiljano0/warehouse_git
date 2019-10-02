@@ -12,8 +12,8 @@ class Movies(models.Model):
     movie_genre = models.CharField(max_length=100)
     movie_quality = models.CharField(max_length=100)
     movie_rating = models.FloatField()
-    movie_subtitles = models.FileField(default='Planet Earth Subtitles')
-    movie_thumbnail = models.FileField(default='Planet Earth thumbnail')
+    movie_subtitles = models.FileField()
+    movie_thumbnail = models.FileField()
     movie_poster = models.FileField()
     movie_video = models.FileField()
     
